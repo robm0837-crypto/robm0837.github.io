@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robert L. Martin — Professional Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-deep: #0f1c33;
+    --gold: #C9922A;
+    --gold-light: #e8b04a;
+    --cream: #F8F5F0;
+    --gray-light: #F0EDE8;
+    --gray-mid: #C8C0B4;
+    --gray-dark: #6B6360;
+    --text: #1E1E1E;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--navy-deep);
+    color: var(--white);
+    padding: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,146,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,146,42,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 60px;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+    position: relative; z-index: 1;
+  }
+
+  .hero-nav .badge {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,146,42,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .hero-nav .contact-bar {
+    font-size: 13px;
+    color: var(--gray-mid);
+    letter-spacing: 0.5px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 9vw, 110px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .tag {
+    background: rgba(201,146,42,0.12);
+    border: 1px solid rgba(201,146,42,0.35);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 2px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    position: relative; z-index: 1;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  .stat {
+    padding: 36px 60px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-weight: 600;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  main { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+
+  /* ===== SECTION HEADERS ===== */
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 40px;
+    line-height: 1.15;
+  }
+
+  /* ===== SUMMARY ===== */
+  .summary-text {
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #3a3a3a;
+    max-width: 820px;
+    border-left: 4px solid var(--gold);
+    padding-left: 32px;
+  }
+
+  /* ===== COMPETENCIES ===== */
+  .competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .competency-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-top: 4px solid var(--gold);
+    padding: 28px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .competency-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(27,42,74,0.1);
+  }
+
+  .comp-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .comp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .comp-skills {
+    font-size: 13px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .timeline { position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,146,42,0.1));
+  }
+
+  .timeline-item {
+    padding-left: 36px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 8px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+  }
+
+  .timeline-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 20px;
+    margin-bottom: 10px;
+  }
+
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .timeline-org {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .timeline-dates {
+    font-size: 12px;
+    color: var(--gray-dark);
+    font-family: 'Courier Prime', monospace;
+    margin-left: auto;
+  }
+
+  .timeline-note {
+    font-size: 12px;
+    color: var(--gray-mid);
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-bullets li {
+    font-size: 15px;
+    color: #3a3a3a;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+    top: 3px;
+  }
+
+  .timeline-bullets li.highlight {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ===== VALUE PROPS ===== */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--navy);
+  }
+
+  .value-card {
+    background: var(--white);
+    padding: 44px 40px;
+    transition: background 0.2s;
+  }
+
+  .value-card:hover { background: var(--gray-light); }
+
+  .value-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: rgba(201,146,42,0.15);
+    line-height: 1;
+    margin-bottom: -10px;
+  }
+
+  .value-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .value-text {
+    font-size: 15px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+
+  /* ===== EDUCATION ===== */
+  .edu-card {
+    background: var(--navy);
+    color: var(--white);
+    padding: 48px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .edu-school {
+    font-size: 15px;
+    color: var(--gold-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .edu-badge {
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    white-space: nowrap;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy-deep);
+    color: var(--white);
+    text-align: center;
+    padding: 60px;
+  }
+
+  footer .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  footer .footer-contact {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .hero-nav, .hero-content, main { padding-left: 24px; padding-right: 24px; }
+    .stat { padding: 28px 24px; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .value-grid { grid-template-columns: 1fr; }
+    .timeline-dates { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <nav class="hero-nav">
+    <div class="badge">Professional Portfolio · 2026</div>
+    <div class="contact-bar">972-658-2949 &nbsp;|&nbsp; rolama1953@hotmail.com &nbsp;|&nbsp; Sunset, TX</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">45 Years of Experience &nbsp;·&nbsp; Law Enforcement · Education · AI Quality Review</div>
+    <h1 class="hero-name">
+      Robert L.<br><span>Martin</span>
+    </h1>
+    <p class="hero-title">
+      A career built on making high-stakes judgment calls — now applying that same rigor to AI content quality, curriculum development, and training that actually works.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">AI Content Reviewer</span>
+      <span class="tag">Curriculum Developer</span>
+      <span class="tag">Educator</span>
+      <span class="tag">Law Enforcement Veteran</span>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">45+</div>
+      <div class="stat-label">Years of Service</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Years in Education</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">2×</div>
+      <div class="stat-label">Agency Commendations</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+  <!-- SUMMARY -->
+  <section class="section fade-in">
+    <div class="section-label">About</div>
+    <h2 class="section-title">A Career Defined by<br>Judgment and Integrity</h2>
+    <p class="summary-text">
+      With over four decades spanning law enforcement, public education, and AI content evaluation, I bring an uncommon combination of real-world authority and modern technical fluency. I have spent a career making critical decisions under pressure — as a deputy sheriff, as a classroom teacher managing complex learning environments, and as a quality rater shaping the safety guardrails of AI-generated content. I don't just understand policy: I live it, teach it, and enforce it. My work is defined by consistency, integrity, and a relentless commitment to raising the standard wherever I operate.
+    </p>
+  </section>
+
+  <!-- COMPETENCIES -->
+  <section class="section fade-in">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Core Competencies</h2>
+    <div class="competencies-grid">
+      <div class="competency-card">
+        <div class="comp-icon">🎯</div>
+        <div class="comp-title">AI & Content Review</div>
+        <div class="comp-skills">Content Safety Evaluation · Policy Compliance · Quality Rating · Structured Feedback · Harmful Content Assessment · AI Model Improvement</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">📐</div>
+        <div class="comp-title">Curriculum & Training</div>
+        <div class="comp-skills">Lesson Planning · Curriculum Development · Adult Learning · LMS Platforms · Certification Programs · Citizens Academy Design</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">🏫</div>
+        <div class="comp-title">Education</div>
+        <div class="comp-skills">Classroom Management · Student Assessment · Criminal Justice Instruction · Differentiated Instruction · Data-Driven Instruction</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">🏛️</div>
+        <div class="comp-title">Leadership</div>
+        <div class="comp-skills">Personnel Supervision · Strategic Planning · Program Development · Crisis Management · De-escalation · Community Engagement</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">💻</div>
+        <div class="comp-title">Technical Skills</div>
+        <div class="comp-skills">Microsoft Office Suite · Google Classroom · Eduphoria · AI Workflow Tools · Digital Content Evaluation · Police Report Writing</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">🔍</div>
+        <div class="comp-title">Investigation & Analysis</div>
+        <div class="comp-skills">Crime Scene Processing · Criminal Investigation · Evidence Evaluation · Forensics Instruction · Pattern Recognition · Detailed Documentation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section fade-in">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Professional History</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">AI / TIAI Quality Rater</div>
+          <div class="timeline-org">TELUS Digital · Remote</div>
+          <div class="timeline-dates">Aug 2025 – Feb 2026</div>
+        </div>
+        <div class="timeline-note">Reduction in Force (RIF) — not performance-related</div>
+        <ul class="timeline-bullets">
+          <li>Reviewed and rated AI-generated video content for accuracy, safety, and platform policy compliance at high volume.</li>
+          <li>Assessed sensitive content categories including harmful conduct, misinformation, and adult content with documented, consistent judgment.</li>
+          <li>Evaluated AI outputs against user prompts to ensure fidelity, clarity, and guideline adherence.</li>
+          <li>Delivered structured written feedback that directly informed AI model refinement and quality improvement cycles.</li>
+          <li class="highlight">Maintained high-volume productivity while preserving accuracy and rating consistency throughout.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Classroom Teacher — Career & Technology</div>
+          <div class="timeline-org">Frisco ISD · Frisco, TX</div>
+          <div class="timeline-dates">Aug 2009 – Jun 2017</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Designed and delivered instruction across six distinct course sections aligned to state curriculum standards.</li>
+          <li>Managed a technology-integrated classroom using Google Classroom and Eduphoria for assessment and communication.</li>
+          <li>Supported district expansion from 5 to 12 high school campuses feeding into the Career & Technology program.</li>
+          <li>Maintained proactive communication with parents and stakeholders regarding student performance data.</li>
+          <li class="highlight">Earned Exceeds Expectations performance ratings consistently throughout all eight years of tenure.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Classroom Teacher — Criminal Justice</div>
+          <div class="timeline-org">McKinney ISD · McKinney, TX</div>
+          <div class="timeline-dates">Aug 2007 – May 2009</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Instructed courses in Introduction to Criminal Justice, Criminal Investigation, and Forensics.</li>
+          <li>Brought real-world law enforcement expertise directly into the curriculum, elevating student engagement and career relevance.</li>
+          <li class="highlight">Earned Exceeds Expectations performance ratings consistently throughout tenure.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Deputy Sheriff</div>
+          <div class="timeline-org">Collin County Sheriff's Office · McKinney, TX</div>
+          <div class="timeline-dates">Oct 1984 – Jun 2007</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Patrolled a 920-square-mile jurisdiction across all shifts, maintaining consistent coverage and rapid emergency response.</li>
+          <li>Conducted criminal investigations, processed crime scenes, and administered first aid at accident and emergency scenes.</li>
+          <li>Served in the Crime Prevention Unit, driving community outreach and public safety education initiatives.</li>
+          <li>Co-established the DARE program for Collin County schools, impacting thousands of students annually.</li>
+          <li class="highlight">Received letter of commendation from Sheriff Terry Box for contributions to the Citizens Academy curriculum.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Interim Police Chief / Sergeant / Lead Investigator</div>
+          <div class="timeline-org">Littlefield Police Department · Littlefield, TX</div>
+          <div class="timeline-dates">Oct 1981 – Sep 1984</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Promoted to Sergeant and subsequently appointed Interim Police Chief following the Chief's resignation.</li>
+          <li>Oversaw all department operations, personnel management, and strategic direction during leadership transition.</li>
+          <li>Served as primary crime scene investigator and led all major criminal investigations for the department.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Patrol Officer</div>
+          <div class="timeline-org">Midland Police Department · Midland, TX</div>
+          <div class="timeline-dates">Oct 1980 – Sep 1981</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Patrolled assigned zones and assisted K-9 officers with warrant service and arrest operations.</li>
+          <li class="highlight">Received letter of congratulations from the Chief of Police for outstanding service.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-role">Police Officer</div>
+          <div class="timeline-org">Orange Police Department · Orange, TX</div>
+          <div class="timeline-dates">Jan 1978 – Sep 1980</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Served on twelve-hour patrol shifts responding to citizen calls, writing reports, and conducting preliminary investigations.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUE PROPS -->
+  <section class="section fade-in">
+    <div class="section-label">Why Robert Martin</div>
+    <h2 class="section-title">What Sets This Candidate Apart</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-title">Real-World Authority</div>
+        <div class="value-text">45 years in law enforcement and education means I understand the weight of judgment calls. I bring that gravity — and that track record — to content review, curriculum design, and anything that demands genuine accountability.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-title">Proven Curriculum Builder</div>
+        <div class="value-text">From the Citizens Academy to Criminal Justice courses, I've built programs from scratch that actually work — grounded in direct experience, not theory. I don't teach what I've read. I teach what I've done.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-title">AI-Ready Skill Set</div>
+        <div class="value-text">Hands-on professional experience rating AI-generated content for safety, accuracy, and quality. Not just familiarity with AI tools — documented practice shaping the outputs that millions of people see.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div class="value-title">Consistent High Performance</div>
+        <div class="value-text">Exceeds Expectations ratings across two school districts. Commendations from two separate law enforcement agencies. Promoted to Sergeant and then Interim Chief within a single department. The record speaks clearly.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section fade-in">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic Background</h2>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">Bachelor of Applied Arts and Sciences</div>
+        <div class="edu-school">Texas A&M University–Commerce &nbsp;·&nbsp; August 2007</div>
+      </div>
+      <div class="edu-badge">Graduated Cum Laude</div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-name">Robert L. Martin</div>
+  <div class="footer-contact">972-658-2949 &nbsp;·&nbsp; rolama1953@hotmail.com &nbsp;·&nbsp; Sunset, Texas 76270</div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
